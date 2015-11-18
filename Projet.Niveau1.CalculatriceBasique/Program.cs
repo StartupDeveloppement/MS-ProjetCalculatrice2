@@ -6,23 +6,34 @@ namespace Projet.Niveau1.CalculatriceBasique
     {
         private static void Main(string[] args)
         {
-            Affichage.Afficher("Bonjour maître Anis !");
+            Affichage.AffichageCouleur("Bonjour !", ConsoleColor.Blue);
             TypeOperation();
         }
 
         private static void TypeOperation()
         {
-            Affichage.Afficher("Quelle type d'opération souhaitez vous faire :");
-            Affichage.Afficher("1.Addition");
+            Affichage.AffichageCouleur("Quelle type d'opération souhaitez vous faire :", ConsoleColor.White);
+            Affichage.AffichageCouleur("1.Addition", ConsoleColor.Red);
             Affichage.Afficher("2.Soustraction");
             Affichage.Afficher("3.Multiplication");
             Affichage.Afficher("4.Division");
 
 
+            //try parse
+            string saisieClavier = Console.ReadLine();
 
-            int saisieClavier = Convert.ToInt16(Console.ReadLine());
-
-            if (saisieClavier == 1)
+            int result;
+            bool resultatParse = int.TryParse(saisieClavier, out result);
+            if (!resultatParse)
+            {
+                Affichage.Afficher("la saisie n'est pas un nombre, try again!");
+                TypeOperation();
+            }
+            else
+            {
+            
+        
+            if (result == 1)
             {
                 Affichage.AfficherSansRetourLigne("Premier nombre :");
                 double premierChiffre = Convert.ToDouble(Console.ReadLine());
@@ -35,7 +46,7 @@ namespace Projet.Niveau1.CalculatriceBasique
                 Affichage.Afficher("Le résultat est : " + resultat);
                 TypeOperation();
             }
-            if (saisieClavier == 2)
+            if (result == 2)
             {
                 Affichage.AfficherSansRetourLigne("Premier nombre :");
                 double premierChiffre = Convert.ToDouble(Console.ReadLine());
@@ -48,7 +59,7 @@ namespace Projet.Niveau1.CalculatriceBasique
                 Affichage.Afficher("Le résultat est : " + resultat);
                 TypeOperation();
             }
-            if (saisieClavier == 3)
+            if (result == 3)
             {
                 Affichage.AfficherSansRetourLigne("Premier nombre :");
                 double premierChiffre = Convert.ToDouble(Console.ReadLine());
@@ -61,15 +72,21 @@ namespace Projet.Niveau1.CalculatriceBasique
                 Affichage.Afficher("Le résultat est : " + resultat);
                 TypeOperation();
             }
-            if (saisieClavier == 4)
+            if (result == 4)
             {
                 Affichage.AfficherSansRetourLigne("Premier nombre :");
                 double premierChiffre = Convert.ToDouble(Console.ReadLine());
                 Affichage.AfficherSansRetourLigne("Second nombre :");
                 double secondChiffre = Convert.ToDouble(Console.ReadLine());
-
                 var calcul = new Calcul(premierChiffre, secondChiffre);
                 var resultat = calcul.division();
+                  
+                
+                    if (secondChiffre == 0) { 
+                        Console.WriteLine("Impossible de diviser par 0 !");
+                TypeOperation();
+                }
+        
 
                 Affichage.Afficher("Le résultat est : " + resultat);
                 TypeOperation();
@@ -82,3 +99,5 @@ namespace Projet.Niveau1.CalculatriceBasique
         }
     }
 }
+}
+

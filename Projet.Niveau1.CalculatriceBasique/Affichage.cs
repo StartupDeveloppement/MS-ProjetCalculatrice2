@@ -13,5 +13,10 @@ namespace Projet.Niveau1.CalculatriceBasique
         {
             Console.Write(texte);
         }
-    }
+        public static void AffichageCouleur(string texte, ConsoleColor couleur)
+        {
+            Console.ForegroundColor = couleur;
+            Afficher(texte);
+     }
+}
 }
