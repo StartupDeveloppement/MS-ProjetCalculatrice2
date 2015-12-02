@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Projet.Niveau1.MoneyManagement
@@ -11,7 +10,7 @@ namespace Projet.Niveau1.MoneyManagement
 
         static void Main(string[] args)
         {
-            Affichage.Afficher("Bonjour !");
+            Affichage.AffichageCouleur("Bonjour !", ConsoleColor.White);
             ExitRequested = false;
             _compteEnBanque = new List<Operation>();
             BeginMoneyManagement();
@@ -19,7 +18,7 @@ namespace Projet.Niveau1.MoneyManagement
 
         private static void BeginMoneyManagement()
         {
-            while(ExitRequested == false)
+            while (ExitRequested == false)
             {
                 Affichage.DisplayMenu();
                 int choix = Convert.ToInt16(Console.ReadLine());
@@ -66,13 +65,13 @@ namespace Projet.Niveau1.MoneyManagement
         {
             Affichage.Afficher("Merci de donner des détails afin de trouver la bonne opération : ");
 
-            Operation dummy = new Operation(new DateTime(), 0,false);
+            Operation dummy = new Operation(new DateTime(), 0, false);
             dummy.GetDate();
             dummy.GetMontant();
             dummy.GetRegularite();
 
             bool existe = EstCeQueOperationExiste(dummy);
-            if(existe)
+            if (existe)
             {
                 if (Affichage.DemanderSiAutreOperation())
                 {
@@ -119,9 +118,10 @@ namespace Projet.Niveau1.MoneyManagement
             //Prendre en compte les choix de l'utilisateur, vérifier les saisies
             Affichage.Afficher("----- Ajout d'une opération -----");
             Affichage.Afficher("Date de l'opération : ");
+            Affichage.Afficher("Opération régulière (0 pour non, 1 pour oui)");
             DateTime saisie = new DateTime();
             Affichage.Afficher("Montant de l'opération : ");
-            int montant = 100;
+            double montant = Convert.ToDouble(Console.ReadLine());
             Affichage.Afficher("Opération régulière (0 pour non, 1 pour oui)");
             bool regulier = true;
             Operation operationEnCours = new Operation(saisie, montant, regulier);
@@ -130,7 +130,7 @@ namespace Projet.Niveau1.MoneyManagement
 
         private static void ListerLesOperations()
         {
-            if(_compteEnBanque.Count == 0)
+            if (_compteEnBanque.Count == 0)
             {
                 Affichage.Afficher("Aucune opération disponible, merci de créditer votre compte");
             }

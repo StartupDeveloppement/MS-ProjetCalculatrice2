@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using static System.Console;
 
 namespace Projet.Niveau1.MoneyManagement
@@ -32,6 +32,12 @@ namespace Projet.Niveau1.MoneyManagement
             Afficher("----------------------------------------");
         }
         #endregion
+
+        public static void AffichageCouleur(string texte, ConsoleColor couleur)
+        {
+            ForegroundColor = couleur;
+            Afficher(texte);
+        }
 
         public static bool DemanderSiAutreOperation()
         {

@@ -9,10 +9,10 @@ namespace Projet.Niveau1.MoneyManagement
     class Operation
     {
         private DateTime dateOperation;
-        private int montant;
+        private double montant;
         private bool reguliere;
 
-        public Operation(DateTime date, int montant, bool reguliere)
+        public Operation(DateTime date, double montant, bool reguliere)
         {
             dateOperation = date;
             this.montant = montant;
